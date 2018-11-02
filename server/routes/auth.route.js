@@ -1,14 +1,10 @@
 const express = require("express");
 const router = express.Router();
+const authCtrl = require("../controllers/auth.controller");
 
-router.get("/", (req, res) => {
-  res.send("Login Works");
+router.post("/", async (req, res) => {
+  let user = await authCtrl.insert(req.body);
+  res.send(user);
 });
-
-function login(req, res) {
-  let user = req.user;
-  let token = "123";
-  res.json({ user, token });
-}
 
 module.exports = router;
