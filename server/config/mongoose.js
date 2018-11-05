@@ -8,8 +8,7 @@ mongoose
     mongoUri,
     { useNewUrlParser: true }
   )
-  .then(
-    () => console.log("Connected to MongoDB"),
-    err =>
-      console.log(`unable to connect to database: ${mongoUri} due to ${err}`)
-  );
+  .then(() => console.log("Connected to MongoDB"))
+  .catch(err => {
+    console.log(err);
+  });

@@ -5,7 +5,15 @@ async function getUsers(req, res) {
     let users = await User.find();
     res.send(users);
   } catch (err) {
-    res.send(err);
+    res.status(400).send(err);
+  }
+}
+async function createUser(req, res) {
+  try {
+    let user = await User.save(req.body);
+    res.send(user);
+  } catch (err) {
+    res.status(400).send(err);
   }
 }
 async function getUser(req, res) {
@@ -14,11 +22,34 @@ async function getUser(req, res) {
     let user = await User.findOne({ email: `${email}` });
     res.send(user);
   } catch (err) {
-    res.send(err);
+    res.status(400).send(err);
+  }
+}
+async function editUser(req, res) {
+  try {
+    let email = req.params.id;
+    let user = await User.update({ email: `${email}` }, req.body, {
+      runValidators: true
+    });
+    res.send(user);
+  } catch (err) {
+    res.status(400).send(err);
+  }
+}
+async function deleteUser(req, res) {
+  try {
+    let email = req.params.id;
+    let user = await User.deleteOne({ email: `${email}` });
+    res.send(user);
+  } catch (err) {
+    res.status(400).send(err);
   }
 }
 
 module.exports = {
   getUsers,
-  getUser
+  getUser,
+  createUser,
+  editUser,
+  deleteUser
 };

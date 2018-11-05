@@ -1,10 +1,11 @@
 const User = require("../models/user.model");
 
-async function insert(user) {
+async function insert(req, res) {
   try {
-    return await new User(user).save();
+    let user = await new User(req.body).save();
+    res.send(user);
   } catch (err) {
-    return err;
+    res.status(400).send(err);
   }
 }
 

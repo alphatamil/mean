@@ -1,29 +1,6 @@
 const mongoose = require("mongoose");
 const schema = mongoose.Schema;
 
-const questionSchema = new schema({
-  _id: { type: String, required: true },
-  q: String,
-  a: String,
-  c: String
-});
-
-const sectionSchema = new schema({
-  id: String,
-  name: String,
-  questions: [questionSchema]
-});
-
-const formSchema = new schema({
-  quarter: String,
-  sections: [sectionSchema]
-});
-
-const yearSchema = new schema({
-  year: String,
-  forms: [formSchema]
-});
-
 const UserSchema = new schema(
   {
     email: {
@@ -40,8 +17,9 @@ const UserSchema = new schema(
     team: String,
     reportingTo: String,
     reportees: Array,
+    forms: Array,
+    isAssigned: Boolean,
     isAdmin: Boolean,
-    years: [yearSchema],
     createdAt: {
       type: Date,
       default: Date.now
