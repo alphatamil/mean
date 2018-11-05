@@ -10,7 +10,7 @@ async function getUsers(req, res) {
 }
 async function createUser(req, res) {
   try {
-    let user = await User.save(req.body);
+    let user = await new User(req.body).save();
     res.send(user);
   } catch (err) {
     res.status(400).send(err);

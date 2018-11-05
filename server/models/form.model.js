@@ -21,20 +21,23 @@ const formSchema = new schema({
   sections: [sectionSchema]
 });
 
-const yearSchema = new schema({
-  year: String,
+const usersSchema = new schema({
+  user: {
+    type: String,
+    required: true
+  },
   formStatus: String,
   formRating: String,
-  forms: [formSchema]
-});
-
-const usersSchema = new schema({
-  user: String,
-  year: [yearSchema]
+  form: [formSchema],
+  createdAt: {
+    type: Date,
+    default: Date.now
+  }
 });
 
 const FormSchema = new schema(
   {
+    madeFrom: String,
     users: [usersSchema],
     createdAt: {
       type: Date,
