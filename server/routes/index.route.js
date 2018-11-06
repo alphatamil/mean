@@ -1,6 +1,7 @@
 const express = require("express");
 const authRoutes = require("./auth.route");
 const userRoutes = require("./user.route");
+const formRoutes = require("./form.route");
 const userFormRoutes = require("./userForm.route");
 const templateRoutes = require("./template.route");
 
@@ -12,6 +13,7 @@ router.get("/check", (req, res) => {
 
 router.use("/auth", authRoutes);
 router.use("/users", userRoutes);
+router.use("/forms", formRoutes);
 router.use("/templates", templateRoutes);
 router.use("/userforms", userFormRoutes);
 
